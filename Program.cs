@@ -32,6 +32,10 @@ namespace Quest
 ",
                 4, 20
             );
+            Challenge luuukes = new Challenge("How many clones of luke skywalker exist in the expanded universe?", 3, 20);
+            Challenge runts = new Challenge(@"What is the worst flavor of runts
+            
+            1) Banana", 1, 40);
 
             // "Awesomeness" is like our Adventurer's current "score"
             // A higher Awesomeness is better
@@ -69,14 +73,26 @@ namespace Quest
 
             // A list of challenges for the Adventurer to complete
             // Note we can use the List class here because have the line "using System.Collections.Generic;" at the top of the file.
-            List<Challenge> challenges = new List<Challenge>()
+            List<Challenge> allChallenges = new List<Challenge>()
             {
                 twoPlusTwo,
                 theAnswer,
                 whatSecond,
                 guessRandom,
-                favoriteBeatle
+                favoriteBeatle,
+                luuukes,
+                runts
             };
+            List<int> selectedChallengeIndexes = new List<int>();
+
+            while (selectedChallengeIndexes.Count < 5)
+            {
+                int random = new Random().Next(0, allChallenges.Count);
+                if (!selectedChallengeIndexes.Contains(random))
+                {
+                    selectedChallengeIndexes.Add(random);
+                }
+            }
 
 
             string choice;
@@ -84,9 +100,9 @@ namespace Quest
             {
                 Console.WriteLine(theAdventurer.GetDescription());
                 // Loop through all the challenges and subject the Adventurer to them
-                foreach (Challenge challenge in challenges)
+                foreach (int challengIndex in selectedChallengeIndexes)
                 {
-                    challenge.RunChallenge(theAdventurer);
+                    allChallenges[challengIndex].RunChallenge(theAdventurer);
                 }
 
                 // This code examines how Awesome the Adventurer is after completing the challenges
@@ -103,7 +119,7 @@ namespace Quest
                 {
                     Console.WriteLine("I guess you did...ok? ...sorta. Still, you should get out of my sight.");
                 }
-                
+
                 theOneRing.ShowPrize(theAdventurer);
                 Console.Write("You would like to play again, correct? ");
                 choice = Console.ReadLine().ToLower();
