@@ -42,7 +42,7 @@ namespace Quest
             int minAwesomeness = 0;
             int maxAwesomeness = 100;
 
-
+            // Initialize the adventurer's robe.
             Robe robe = new Robe()
             {
                 Length = 64,
@@ -53,10 +53,14 @@ namespace Quest
             }
             };
 
+            // Initialize the adventurer's hat.
             Hat hat = new Hat()
             {
                 ShininessLevel = 10
             };
+
+            // Initialize the PRIZE.
+            Prize theOneRing = new Prize("The one ring...");
 
             // Make a new "Adventurer" object using the "Adventurer" class
             Console.Write("What is your name, adventurer? ");
@@ -99,7 +103,8 @@ namespace Quest
                 {
                     Console.WriteLine("I guess you did...ok? ...sorta. Still, you should get out of my sight.");
                 }
-
+                
+                theOneRing.ShowPrize(theAdventurer);
                 Console.Write("You would like to play again, correct? ");
                 choice = Console.ReadLine().ToLower();
             } while (choice == "yes");
