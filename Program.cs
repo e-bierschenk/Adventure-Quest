@@ -84,7 +84,7 @@ namespace Quest
                 }
 
                 Console.Write("You would like to play again, correct? ");
-                choice = Console.ReadLine();
+                choice = Console.ReadLine().ToLower();
             } while (choice == "yes");
         }
     }
