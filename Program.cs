@@ -83,26 +83,30 @@ namespace Quest
                 luuukes,
                 runts
             };
-            List<int> selectedChallengeIndexes = new List<int>();
-
-            while (selectedChallengeIndexes.Count < 5)
-            {
-                int random = new Random().Next(0, allChallenges.Count);
-                if (!selectedChallengeIndexes.Contains(random))
-                {
-                    selectedChallengeIndexes.Add(random);
-                }
-            }
 
 
             string choice;
             do
             {
+                theAdventurer.Awesomeness += Challenge.successfulChallenges * 10;
+                Console.WriteLine(theAdventurer.Awesomeness);
                 Console.WriteLine(theAdventurer.GetDescription());
-                // Loop through all the challenges and subject the Adventurer to them
-                foreach (int challengIndex in selectedChallengeIndexes)
+
+                // Selects a random int to use as an index, and adds it to the index list, we then use that to select the challenge
+                List<int> selectedChallengeIndexes = new List<int>();
+                while (selectedChallengeIndexes.Count < 5)
                 {
-                    allChallenges[challengIndex].RunChallenge(theAdventurer);
+                    int random = new Random().Next(0, allChallenges.Count);
+                    if (!selectedChallengeIndexes.Contains(random))
+                    {
+                        selectedChallengeIndexes.Add(random);
+                    }
+                }
+
+                // Loop through all the challenges and subject the Adventurer to them
+                foreach (int challengeIndex in selectedChallengeIndexes)
+                {
+                    allChallenges[challengeIndex].RunChallenge(theAdventurer);
                 }
 
                 // This code examines how Awesome the Adventurer is after completing the challenges

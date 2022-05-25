@@ -24,6 +24,8 @@ namespace Quest
             _awesomenessChange = awesomenessChange;
         }
 
+        public static int successfulChallenges = 0;
+
         // This method will take an Adventurer object and make that Adventurer perform the challenge
         public void RunChallenge(Adventurer adventurer)
         {
@@ -40,6 +42,7 @@ namespace Quest
 
                 // Note how we access an Adventurer object's property
                 adventurer.Awesomeness += _awesomenessChange;
+                successfulChallenges++;
             }
             else
             {
